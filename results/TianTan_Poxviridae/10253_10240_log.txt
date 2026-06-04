@@ -1,0 +1,15 @@
+Protein Homology Mapping Pipeline Log
+==================================================
+Target Taxonomy ID: 10253
+Parent Taxonomy ID: 10240
+Target Organism: Vaccinia virus Tian Tan
+Identity Threshold: 30.0%
+
+Target Proteins (UniProt): 4 with matches
+Total Alignments Passing Threshold: 13
+
+Top 10 Matches:
+  Q9JFA1: 98.5% — 4ETQ
+  Q9JFC0: 98.4% — 2I9L;4U6H;8ZU9;8ZUA
+  Q9JF69: 95.9% — 9OG1;9OG2
+  Q9JF63: 94.5% — 9MSN;9MSO;9MSP;9UDQ;9UE0;9UE8

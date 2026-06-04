@@ -1,0 +1,148 @@
+﻿target_accession,target_protein_name,target_length,pdb_id,chain_desc,pdb_length,identity_pct,alignment_score
+M1LBP0,Entry-fusion complex associated protein OPG095,250,8ZU9,8ZU9_3|Chain C[auth E]|Entry-fusion complex associated protein OPG095|Monkeypox virus (10244),187,99.45,180.0
+M1LBP0,Entry-fusion complex associated protein OPG095,250,8ZUA,"8ZUA_2|Chains B[auth C], E[auth F], H, K|Entry-fusion complex associated protein OPG095|Monkeypox virus (10244)",187,99.45,180.0
+M1LBP0,Entry-fusion complex associated protein OPG095,250,2I9L,"2I9L_3|Chains I, J, K, L|Virion membrane protein M25|Vaccinia virus (10245)",184,98.91,182.0
+M1LBP0,Entry-fusion complex associated protein OPG095,250,4U6H,"4U6H_3|Chains E, F[auth J]|Protein L1|Vaccinia virus (10254)",184,98.91,182.0
+Q8V4Y0,Cell surface-binding protein OPG105,304,4ETQ,"4ETQ_3|Chains E[auth C], F[auth X]|IMV membrane protein|Vaccinia virus (10245)",269,94.23,245.0
+A0A7H0DND2,Protein OPG161,181,9MSN,"9MSN_3|Chains C[auth E], D[auth F], G[auth J], H[auth K]|Protein OPG161|Monkeypox virus (10244)",100,100.0,92.0
+A0A7H0DND2,Protein OPG161,181,9UDQ,"9UDQ_1|Chains A[auth B], D[auth J]|Protein OPG161|Monkeypox virus (10244)",124,100.0,124.0
+A0A7H0DND2,Protein OPG161,181,9UE0,"9UE0_3|Chains C, D|Protein OPG161|Monkeypox virus (10244)",124,100.0,124.0
+A0A7H0DND2,Protein OPG161,181,9UE8,"9UE8_3|Chains C, D, G, H, K, L, O, P, S, T, W, X|Protein OPG161|Monkeypox virus (10244)",152,100.0,124.0
+A0A7H0DND2,Protein OPG161,181,9MSP,"9MSP_1|Chains A, B, E, F|Protein OPG161|Monkeypox virus (10244)",100,100.0,92.0
+A0A7H0DND2,Protein OPG161,181,9MSO,"9MSO_3|Chains C[auth E], D[auth F], G, H[auth I]|Protein OPG161|Monkeypox virus (10244)",100,100.0,92.0
+A0A7H0DN92,Cell surface-binding protein OPG105,304,4ETQ,"4ETQ_3|Chains E[auth C], F[auth X]|IMV membrane protein|Vaccinia virus (10245)",269,94.62,246.0
+A0A7H0DNC4,Envelop protein OPG153,509,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,98.91,362.0
+A0A7H0DNC4,Envelop protein OPG153,509,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,98.91,362.0
+A0A0F6N859,Cell surface-binding protein OPG105,304,4ETQ,"4ETQ_3|Chains E[auth C], F[auth X]|IMV membrane protein|Vaccinia virus (10245)",269,94.62,246.0
+A0A2L0AQY3,Cell surface-binding protein OPG105,304,4ETQ,"4ETQ_3|Chains E[auth C], F[auth X]|IMV membrane protein|Vaccinia virus (10245)",269,94.59,245.0
+A0A2L0AR15,Protein OPG161,181,9MSN,"9MSN_3|Chains C[auth E], D[auth F], G[auth J], H[auth K]|Protein OPG161|Monkeypox virus (10244)",100,100.0,92.0
+A0A2L0AR15,Protein OPG161,181,9UDQ,"9UDQ_1|Chains A[auth B], D[auth J]|Protein OPG161|Monkeypox virus (10244)",124,100.0,124.0
+A0A2L0AR15,Protein OPG161,181,9UE0,"9UE0_3|Chains C, D|Protein OPG161|Monkeypox virus (10244)",124,100.0,124.0
+A0A2L0AR15,Protein OPG161,181,9UE8,"9UE8_3|Chains C, D, G, H, K, L, O, P, S, T, W, X|Protein OPG161|Monkeypox virus (10244)",152,100.0,124.0
+A0A2L0AR15,Protein OPG161,181,9MSP,"9MSP_1|Chains A, B, E, F|Protein OPG161|Monkeypox virus (10244)",100,100.0,92.0
+A0A2L0AR15,Protein OPG161,181,9MSO,"9MSO_3|Chains C[auth E], D[auth F], G, H[auth I]|Protein OPG161|Monkeypox virus (10244)",100,100.0,92.0
+A0A650BUB2,Protein OPG161,180,9MSN,"9MSN_3|Chains C[auth E], D[auth F], G[auth J], H[auth K]|Protein OPG161|Monkeypox virus (10244)",100,100.0,92.0
+A0A650BUB2,Protein OPG161,180,9UDQ,"9UDQ_1|Chains A[auth B], D[auth J]|Protein OPG161|Monkeypox virus (10244)",124,100.0,124.0
+A0A650BUB2,Protein OPG161,180,9UE0,"9UE0_3|Chains C, D|Protein OPG161|Monkeypox virus (10244)",124,100.0,124.0
+A0A650BUB2,Protein OPG161,180,9UE8,"9UE8_3|Chains C, D, G, H, K, L, O, P, S, T, W, X|Protein OPG161|Monkeypox virus (10244)",152,100.0,124.0
+A0A650BUB2,Protein OPG161,180,9MSP,"9MSP_1|Chains A, B, E, F|Protein OPG161|Monkeypox virus (10244)",100,100.0,92.0
+A0A650BUB2,Protein OPG161,180,9MSO,"9MSO_3|Chains C[auth E], D[auth F], G, H[auth I]|Protein OPG161|Monkeypox virus (10244)",100,100.0,92.0
+A0A7G8C251,Cell surface-binding protein OPG105,304,4ETQ,"4ETQ_3|Chains E[auth C], F[auth X]|IMV membrane protein|Vaccinia virus (10245)",269,94.23,245.0
+E2FLF9,Cell surface-binding protein OPG105,304,4ETQ,"4ETQ_3|Chains E[auth C], F[auth X]|IMV membrane protein|Vaccinia virus (10245)",269,94.23,245.0
+F1DJF8,Cell surface-binding protein OPG105,304,4ETQ,"4ETQ_3|Chains E[auth C], F[auth X]|IMV membrane protein|Vaccinia virus (10245)",269,93.85,244.0
+Q3I7G9,Protein OPG161,181,9MSN,"9MSN_3|Chains C[auth E], D[auth F], G[auth J], H[auth K]|Protein OPG161|Monkeypox virus (10244)",100,100.0,92.0
+Q3I7G9,Protein OPG161,181,9UDQ,"9UDQ_1|Chains A[auth B], D[auth J]|Protein OPG161|Monkeypox virus (10244)",124,97.58,121.0
+Q3I7G9,Protein OPG161,181,9UE0,"9UE0_3|Chains C, D|Protein OPG161|Monkeypox virus (10244)",124,97.58,121.0
+Q3I7G9,Protein OPG161,181,9UE8,"9UE8_3|Chains C, D, G, H, K, L, O, P, S, T, W, X|Protein OPG161|Monkeypox virus (10244)",152,97.58,121.0
+Q3I7G9,Protein OPG161,181,9MSP,"9MSP_1|Chains A, B, E, F|Protein OPG161|Monkeypox virus (10244)",100,100.0,92.0
+Q3I7G9,Protein OPG161,181,9MSO,"9MSO_3|Chains C[auth E], D[auth F], G, H[auth I]|Protein OPG161|Monkeypox virus (10244)",100,100.0,92.0
+Q3I8Q9,Cell surface-binding protein OPG105,304,4ETQ,"4ETQ_3|Chains E[auth C], F[auth X]|IMV membrane protein|Vaccinia virus (10245)",269,94.23,245.0
+Q3I9B0,Cell surface-binding protein OPG105,304,4ETQ,"4ETQ_3|Chains E[auth C], F[auth X]|IMV membrane protein|Vaccinia virus (10245)",269,93.85,244.0
+Q5IXS0,Cell surface-binding protein OPG105,304,4ETQ,"4ETQ_3|Chains E[auth C], F[auth X]|IMV membrane protein|Vaccinia virus (10245)",269,94.62,246.0
+Q80KX2,Protein OPG161,181,9MSN,"9MSN_3|Chains C[auth E], D[auth F], G[auth J], H[auth K]|Protein OPG161|Monkeypox virus (10244)",100,100.0,92.0
+Q80KX2,Protein OPG161,181,9UDQ,"9UDQ_1|Chains A[auth B], D[auth J]|Protein OPG161|Monkeypox virus (10244)",124,98.39,122.0
+Q80KX2,Protein OPG161,181,9UE0,"9UE0_3|Chains C, D|Protein OPG161|Monkeypox virus (10244)",124,98.39,122.0
+Q80KX2,Protein OPG161,181,9UE8,"9UE8_3|Chains C, D, G, H, K, L, O, P, S, T, W, X|Protein OPG161|Monkeypox virus (10244)",152,98.39,122.0
+Q80KX2,Protein OPG161,181,9MSP,"9MSP_1|Chains A, B, E, F|Protein OPG161|Monkeypox virus (10244)",100,100.0,92.0
+Q80KX2,Protein OPG161,181,9MSO,"9MSO_3|Chains C[auth E], D[auth F], G, H[auth I]|Protein OPG161|Monkeypox virus (10244)",100,100.0,92.0
+Q8V4U4,Protein OPG161,181,9MSN,"9MSN_3|Chains C[auth E], D[auth F], G[auth J], H[auth K]|Protein OPG161|Monkeypox virus (10244)",100,100.0,92.0
+Q8V4U4,Protein OPG161,181,9UDQ,"9UDQ_1|Chains A[auth B], D[auth J]|Protein OPG161|Monkeypox virus (10244)",124,97.58,121.0
+Q8V4U4,Protein OPG161,181,9UE0,"9UE0_3|Chains C, D|Protein OPG161|Monkeypox virus (10244)",124,97.58,121.0
+Q8V4U4,Protein OPG161,181,9UE8,"9UE8_3|Chains C, D, G, H, K, L, O, P, S, T, W, X|Protein OPG161|Monkeypox virus (10244)",152,97.58,121.0
+Q8V4U4,Protein OPG161,181,9MSP,"9MSP_1|Chains A, B, E, F|Protein OPG161|Monkeypox virus (10244)",100,100.0,92.0
+Q8V4U4,Protein OPG161,181,9MSO,"9MSO_3|Chains C[auth E], D[auth F], G, H[auth I]|Protein OPG161|Monkeypox virus (10244)",100,100.0,92.0
+Q90197,Cell surface-binding protein OPG105,304,4ETQ,"4ETQ_3|Chains E[auth C], F[auth X]|IMV membrane protein|Vaccinia virus (10245)",269,95.0,247.0
+A0A0F6N6R6,Cowpox A-type inclusion protein,515,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,92.66,366.0
+A0A0F6N6R6,Cowpox A-type inclusion protein,515,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,92.66,366.0
+A0A0F6N6S2,Cowpox A-type inclusion protein,512,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,93.61,366.0
+A0A0F6N6S2,Cowpox A-type inclusion protein,512,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,93.61,366.0
+A0A0F6N733,Myristylprotein,250,8ZU9,8ZU9_3|Chain C[auth E]|Entry-fusion complex associated protein OPG095|Monkeypox virus (10244),187,98.9,179.0
+A0A0F6N733,Myristylprotein,250,8ZUA,"8ZUA_2|Chains B[auth C], E[auth F], H, K|Entry-fusion complex associated protein OPG095|Monkeypox virus (10244)",187,98.9,179.0
+A0A0F6N733,Myristylprotein,250,2I9L,"2I9L_3|Chains I, J, K, L|Virion membrane protein M25|Vaccinia virus (10245)",184,98.37,181.0
+A0A0F6N733,Myristylprotein,250,4U6H,"4U6H_3|Chains E, F[auth J]|Protein L1|Vaccinia virus (10254)",184,98.37,181.0
+A0A0F6N7R3,Cowpox A-type inclusion protein,510,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,88.35,364.0
+A0A0F6N7R3,Cowpox A-type inclusion protein,510,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,88.35,364.0
+A0A0F6N8D3,Cowpox A-type inclusion protein,507,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,87.47,363.0
+A0A0F6N8D3,Cowpox A-type inclusion protein,507,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,87.47,363.0
+A0A0F6N8N1,Cowpox A-type inclusion protein,512,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,92.84,363.0
+A0A0F6N8N1,Cowpox A-type inclusion protein,512,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,92.84,363.0
+A0A0F6N8X9,Cowpox A-type inclusion protein,512,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,93.09,364.0
+A0A0F6N8X9,Cowpox A-type inclusion protein,512,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,93.09,364.0
+A0A0F6NA24,Cowpox A-type inclusion protein,504,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,93.61,366.0
+A0A0F6NA24,Cowpox A-type inclusion protein,504,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,93.61,366.0
+A0A0F6NA74,Cowpox A-type inclusion protein,500,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,89.32,368.0
+A0A0F6NA74,Cowpox A-type inclusion protein,500,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,89.32,368.0
+A0A0F7G921,A-type inclusion protein,518,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,88.59,365.0
+A0A0F7G921,A-type inclusion protein,518,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,88.59,365.0
+A0A0F7GAP0,A-type inclusion protein,502,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,87.98,366.0
+A0A0F7GAP0,A-type inclusion protein,502,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,87.98,366.0
+A0A0F7GB12,Truncated A-type inclusion protein,305,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,100.0,301.0
+A0A0F7GB12,Truncated A-type inclusion protein,305,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,100.0,301.0
+A0A650BUA0,MPXVgp138,509,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,98.91,362.0
+A0A650BUA0,MPXVgp138,509,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,98.91,362.0
+A0A7G8C2Q4,Cowpox A-type inclusion protein,515,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,92.66,366.0
+A0A7G8C2Q4,Cowpox A-type inclusion protein,515,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,92.66,366.0
+A0A7G8C390,Cowpox A-type inclusion protein,521,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,88.65,367.0
+A0A7G8C390,Cowpox A-type inclusion protein,521,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,88.65,367.0
+A0A7G8C3S5,A-type inclusion protein,517,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,99.45,364.0
+A0A7G8C3S5,A-type inclusion protein,517,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,99.45,364.0
+A0A7G8C5C7,Cowpox A-type inclusion protein,517,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,99.45,364.0
+A0A7G8C5C7,Cowpox A-type inclusion protein,517,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,99.45,364.0
+A0A7G8C5W8,Cowpox A-type inclusion protein,521,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,88.41,366.0
+A0A7G8C5W8,Cowpox A-type inclusion protein,521,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,88.41,366.0
+A0A7G8C6Z0,A-type inclusion protein,520,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,88.59,365.0
+A0A7G8C6Z0,A-type inclusion protein,520,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,88.59,365.0
+A0A7H0DLT1,Cowpox A-type inclusion protein,509,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,98.91,362.0
+A0A7H0DLT1,Cowpox A-type inclusion protein,509,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,98.91,362.0
+E2FLD4,Myristylprotein,250,8ZU9,8ZU9_3|Chain C[auth E]|Entry-fusion complex associated protein OPG095|Monkeypox virus (10244),187,99.45,180.0
+E2FLD4,Myristylprotein,250,8ZUA,"8ZUA_2|Chains B[auth C], E[auth F], H, K|Entry-fusion complex associated protein OPG095|Monkeypox virus (10244)",187,99.45,180.0
+E2FLD4,Myristylprotein,250,2I9L,"2I9L_3|Chains I, J, K, L|Virion membrane protein M25|Vaccinia virus (10245)",184,98.91,182.0
+E2FLD4,Myristylprotein,250,4U6H,"4U6H_3|Chains E, F[auth J]|Protein L1|Vaccinia virus (10254)",184,98.91,182.0
+E2FLJ5,Cowpox A-type inclusion protein,514,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,99.73,365.0
+E2FLJ5,Cowpox A-type inclusion protein,514,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,99.73,365.0
+F1DIZ8,Cowpox A-type inclusion protein,520,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,88.59,365.0
+F1DIZ8,Cowpox A-type inclusion protein,520,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,88.59,365.0
+F1DJJ4,Cowpox A-type inclusion protein,520,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,88.35,364.0
+F1DJJ4,Cowpox A-type inclusion protein,520,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,88.35,364.0
+M1L4A3,Truncted cowpox A-type inclusion protein,508,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,93.61,366.0
+M1L4A3,Truncted cowpox A-type inclusion protein,508,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,93.61,366.0
+M1LBH6,Truncted cowpox A-type inclusion protein,509,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,99.73,365.0
+M1LBH6,Truncted cowpox A-type inclusion protein,509,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,99.73,365.0
+Q3I7H6,Cowpox A-type inclusion protein,511,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,98.91,362.0
+Q3I7H6,Cowpox A-type inclusion protein,511,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,98.91,362.0
+Q3I825,Cowpox A-type inclusion protein,503,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,99.18,362.0
+Q3I825,Cowpox A-type inclusion protein,503,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,99.18,362.0
+Q3I8M3,Cowpox A-type inclusion protein,516,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,87.98,366.0
+Q3I8M3,Cowpox A-type inclusion protein,516,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,87.98,366.0
+Q3I974,Cowpox A-type inclusion protein,519,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,99.45,364.0
+Q3I974,Cowpox A-type inclusion protein,519,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,99.45,364.0
+Q3T611,MPXV-COP-131,499,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,92.58,362.0
+Q3T611,MPXV-COP-131,499,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,92.58,362.0
+Q3T6X6,MPXV-SL-131,506,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,88.19,366.0
+Q3T6X6,MPXV-SL-131,506,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,88.19,366.0
+Q5IXN8,MPXV-WRAIR131,499,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,92.84,363.0
+Q5IXN8,MPXV-WRAIR131,499,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,92.84,363.0
+Q5IXU5,IMV membrane protein,250,8ZU9,8ZU9_3|Chain C[auth E]|Entry-fusion complex associated protein OPG095|Monkeypox virus (10244),187,99.45,180.0
+Q5IXU5,IMV membrane protein,250,8ZUA,"8ZUA_2|Chains B[auth C], E[auth F], H, K|Entry-fusion complex associated protein OPG095|Monkeypox virus (10244)",187,99.45,180.0
+Q5IXU5,IMV membrane protein,250,2I9L,"2I9L_3|Chains I, J, K, L|Virion membrane protein M25|Vaccinia virus (10245)",184,98.91,182.0
+Q5IXU5,IMV membrane protein,250,4U6H,"4U6H_3|Chains E, F[auth J]|Protein L1|Vaccinia virus (10254)",184,98.91,182.0
+Q80KX3,M1R,250,8ZU9,8ZU9_3|Chain C[auth E]|Entry-fusion complex associated protein OPG095|Monkeypox virus (10244),187,99.45,180.0
+Q80KX3,M1R,250,8ZUA,"8ZUA_2|Chains B[auth C], E[auth F], H, K|Entry-fusion complex associated protein OPG095|Monkeypox virus (10244)",187,99.45,180.0
+Q80KX3,M1R,250,2I9L,"2I9L_3|Chains I, J, K, L|Virion membrane protein M25|Vaccinia virus (10245)",184,98.91,182.0
+Q80KX3,M1R,250,4U6H,"4U6H_3|Chains E, F[auth J]|Protein L1|Vaccinia virus (10254)",184,98.91,182.0
+Q8V4V0,A28L,520,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,89.08,367.0
+Q8V4V0,A28L,520,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,89.08,367.0
+Q8V502,M1R,250,8ZU9,8ZU9_3|Chain C[auth E]|Entry-fusion complex associated protein OPG095|Monkeypox virus (10244),187,99.45,180.0
+Q8V502,M1R,250,8ZUA,"8ZUA_2|Chains B[auth C], E[auth F], H, K|Entry-fusion complex associated protein OPG095|Monkeypox virus (10244)",187,99.45,180.0
+Q8V502,M1R,250,2I9L,"2I9L_3|Chains I, J, K, L|Virion membrane protein M25|Vaccinia virus (10245)",184,98.91,182.0
+Q8V502,M1R,250,4U6H,"4U6H_3|Chains E, F[auth J]|Protein L1|Vaccinia virus (10254)",184,98.91,182.0
+V9NKU4,A28L,516,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,87.74,365.0
+V9NKU4,A28L,516,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,87.74,365.0
+V9NNF4,A28L,519,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,99.73,365.0
+V9NNF4,A28L,519,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,99.73,365.0
+V9NR63,A28L,520,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,88.83,366.0
+V9NR63,A28L,520,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,88.83,366.0
+V9NSD8,A28L,520,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,88.59,365.0
+V9NSD8,A28L,520,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,88.59,365.0
+V9NWM3,A28L,519,9OG1,9OG1_1|Chain A|A28L|Monkeypox virus (10244),416,99.73,365.0
+V9NWM3,A28L,519,9OG2,9OG2_1|Chain A|A28L|Monkeypox virus (10244),416,99.73,365.0

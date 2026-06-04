@@ -1,0 +1,21 @@
+Protein Homology Mapping Pipeline Log
+==================================================
+Target Taxonomy ID: 10244
+Parent Taxonomy ID: 10240
+Target Organism: Monkeypox virus
+Identity Threshold: 30.0%
+
+Target Proteins (UniProt): 61 with matches
+Total Alignments Passing Threshold: 147
+
+Top 10 Matches:
+  A0A7H0DND2: 100.0% — 9MSN;9MSO;9MSP;9UDQ;9UE0;9UE8
+  A0A2L0AR15: 100.0% — 9MSN;9MSO;9MSP;9UDQ;9UE0;9UE8
+  A0A650BUB2: 100.0% — 9MSN;9MSO;9MSP;9UDQ;9UE0;9UE8
+  Q3I7G9: 100.0% — 9MSN;9MSO;9MSP;9UDQ;9UE0;9UE8
+  Q80KX2: 100.0% — 9MSN;9MSO;9MSP;9UDQ;9UE0;9UE8
+  Q8V4U4: 100.0% — 9MSN;9MSO;9MSP;9UDQ;9UE0;9UE8
+  A0A0F7GB12: 100.0% — 9OG1;9OG2
+  E2FLJ5: 99.7% — 9OG1;9OG2
+  M1LBH6: 99.7% — 9OG1;9OG2
+  V9NNF4: 99.7% — 9OG1;9OG2
