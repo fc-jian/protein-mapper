@@ -17,7 +17,8 @@ pipeline:
 4. Downloads each matching PDB entry's FASTA records and parses chains.
 5. Aligns target proteins against PDB chains and writes CSV outputs.
 
-Primary documentation lives in `README.md` and `docs/DEVELOPMENT_DOC.md`.
+Primary tracked documentation lives in `README.md` and `README_CN.md`. The
+`docs/` directory is local-only and ignored by Git.
 
 ## Local Skills
 
@@ -36,15 +37,16 @@ When a task touches one of these areas, read the matching skill before editing.
 
 - Python 3.10+.
 - Runtime dependencies: `requests`, `biopython`, and `pandas`.
+- Use `uv` for the local environment in `./.venv`.
 - There is no dependency manifest yet. If dependencies change, add or update a
-  manifest and keep the README/docs in sync.
+  manifest and keep the README files in sync.
 
 Setup:
 
 ```bash
-python3 -m venv .venv
+uv venv .venv --python 3.10
 source .venv/bin/activate
-pip install pandas requests biopython
+uv pip install requests biopython pandas
 ```
 
 Run the documented smoke case:
@@ -107,8 +109,8 @@ The pipeline writes three files per run:
 - `{target}_{parent}_all_alignments.csv`
 - `{target}_{parent}_log.txt`
 
-Generated result directories can become large. Do not add new generated datasets
-or refresh checked-in example results unless the task specifically requires it.
+`results/` is generated output and ignored by Git. Do not force-add generated
+datasets unless the task specifically requires it.
 `output.py` currently writes CSV files with `utf-8-sig`; preserve that unless
 there is a concrete compatibility reason to change it.
 
@@ -124,5 +126,5 @@ a live API smoke run is skipped, state that explicitly in the handoff.
 ## Documentation
 
 When changing CLI arguments, dependencies, endpoint behavior, output columns, or
-alignment semantics, update `README.md` and `docs/DEVELOPMENT_DOC.md` in the
-same change.
+alignment semantics, update both `README.md` and `README_CN.md` in the same
+change.
