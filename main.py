@@ -13,42 +13,80 @@ from __future__ import annotations
 import argparse
 import sys
 import time
-from datetime import datetime
 
 import config
 from taxonomy import verify_lineage
 from uniprot import fetch_uniprot_proteins
 from pdb_search import search_pdb_structures, download_all_pdb_fasta
 from alignment import run_alignment
+from clustering import run_mmseqs_clustering_report
+from intermediate import (
+    pdb_fasta_dir,
+    save_pdb_chain_intermediates,
+    save_pdb_search_intermediates,
+    save_uniprot_intermediates,
+)
 from output import write_csv
 from utils import log, probe_endpoints
 
 
+def _write_empty_outputs_and_exit(
+    target_taxid: int,
+    parent_taxid: int,
+    threshold: float,
+    cluster_threshold: float,
+    output_dir: str,
+    target_name: str,
+    target_proteins: list[dict[str, object]],
+) -> None:
+    """Write empty report files for a run that has no downstream candidates."""
+    mapping_path, aln_path, log_path = write_csv([], [], target_taxid, parent_taxid, threshold, output_dir, target_name)
+    cluster_path = run_mmseqs_clustering_report(
+        [],
+        target_proteins,
+        target_taxid,
+        parent_taxid,
+        output_dir,
+        cluster_threshold,
+    )
+    with open(log_path, "a", encoding="utf-8") as handle:
+        handle.write(f"\nMMseqs2 Cluster Threshold: {cluster_threshold}\n")
+        handle.write(f"Cluster Mapping CSV: {cluster_path}\n")
+    log(f"  Empty mapping CSV: {mapping_path}")
+    log(f"  Empty alignment detail CSV: {aln_path}")
+    log(f"  Empty cluster mapping CSV: {cluster_path}")
+    log(f"  Run log: {log_path}")
+    sys.exit(0)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="蛋白质序列同源映射管道 — 目标物种蛋白组 × PDB 同源结构交叉比对",
+        description="Protein sequence homology mapping pipeline: target proteome x PDB homologous structures",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument("--target", type=int, required=True, help="Target taxonomy ID")
     parser.add_argument("--parent", type=int, required=True, help="Parent taxonomy ID")
-    parser.add_argument("--keywords", type=str, nargs="+", required=True, help="Space-separated PDB search keywords (AND logic)")
+    parser.add_argument("--keywords", type=str, nargs="+", required=True, help="Space-separated PDB search keywords")
     parser.add_argument("--threshold", type=float, default=config.DEFAULT_THRESHOLD, help=f"Identity threshold %% (default: {config.DEFAULT_THRESHOLD})")
-    parser.add_argument("--output", type=str, default="./", help="Output directory (default: ./)")
+    parser.add_argument("--cluster-threshold", type=float, default=config.MMSEQS_CLUSTER_THRESHOLD, help=f"MMseqs2 clustering sequence identity threshold (default: {config.MMSEQS_CLUSTER_THRESHOLD})")
+    parser.add_argument("--output", type=str, default=config.DEFAULT_OUTPUT_DIR, help=f"Output directory (default: {config.DEFAULT_OUTPUT_DIR})")
     args = parser.parse_args()
 
     target_taxid: int = args.target
     parent_taxid: int = args.parent
     keywords: list[str] = args.keywords
     threshold: float = args.threshold
+    cluster_threshold: float = args.cluster_threshold
     output_dir: str = args.output
 
     start_time = time.time()
     log("=" * 60)
-    log("蛋白质序列同源映射管道 启动")
+    log("Protein sequence homology mapping pipeline started")
     log(f"  Target Taxonomy ID: {target_taxid}")
     log(f"  Parent Taxonomy ID: {parent_taxid}")
     log(f"  Keywords: {keywords}")
     log(f"  Identity Threshold: {threshold}%")
+    log(f"  MMseqs2 Cluster Threshold: {cluster_threshold}")
     log(f"  Output Directory: {output_dir}")
     log("=" * 60)
 
@@ -56,70 +94,115 @@ def main() -> None:
     probe_endpoints()
 
     # 1. Verify taxonomy lineage
-    log("\n[Step 1/5] 验证 NCBI Taxonomy 血缘关系")
+    log("\n[Step 1/6] Verify NCBI Taxonomy lineage")
     try:
         lineage_info = verify_lineage(target_taxid, parent_taxid)
         target_name = lineage_info["target_name"]
     except Exception as exc:
-        log(f"  ✗ Lineage 验证失败: {exc}", "ERROR")
+        log(f"  Lineage verification failed: {exc}", "ERROR")
         sys.exit(1)
 
     # 2. Download target proteome from UniProt
-    log("\n[Step 2/5] 下载目标物种蛋白质组 (UniProt)")
+    log("\n[Step 2/6] Download target proteome from UniProt")
     try:
         target_proteins = fetch_uniprot_proteins(target_taxid)
+        save_uniprot_intermediates(target_proteins, output_dir, target_taxid, parent_taxid)
     except Exception as exc:
-        log(f"  ✗ UniProt 下载失败: {exc}", "ERROR")
+        log(f"  UniProt download failed: {exc}", "ERROR")
         sys.exit(1)
 
     if not target_proteins:
-        log("  ⚠ UniProt 未返回任何蛋白质, 退出", "WARNING")
-        write_csv([], [], target_taxid, parent_taxid, threshold, output_dir, target_name)
-        sys.exit(0)
+        log("  UniProt returned no proteins; exiting", "WARNING")
+        _write_empty_outputs_and_exit(
+            target_taxid,
+            parent_taxid,
+            threshold,
+            cluster_threshold,
+            output_dir,
+            target_name,
+            [],
+        )
 
     # 3. Search PDB structures
-    log("\n[Step 3/5] 搜索 RCSB PDB 结构")
+    log("\n[Step 3/6] Search RCSB PDB structures")
     try:
         pdb_ids = search_pdb_structures(parent_taxid, keywords)
+        save_pdb_search_intermediates(pdb_ids, keywords, output_dir, target_taxid, parent_taxid)
     except Exception as exc:
-        log(f"  ✗ PDB 搜索失败: {exc}", "ERROR")
+        log(f"  PDB search failed: {exc}", "ERROR")
         sys.exit(1)
 
     if not pdb_ids:
-        log("  ⚠ 未找到匹配的 PDB 结构, 退出", "WARNING")
-        write_csv([], [], target_taxid, parent_taxid, threshold, output_dir, target_name)
-        sys.exit(0)
+        log("  No matching PDB structures found; exiting", "WARNING")
+        _write_empty_outputs_and_exit(
+            target_taxid,
+            parent_taxid,
+            threshold,
+            cluster_threshold,
+            output_dir,
+            target_name,
+            target_proteins,
+        )
 
     # 4. Download PDB FASTA
-    log("\n[Step 4/5] 下载 PDB FASTA 序列")
+    log("\n[Step 4/6] Download PDB FASTA sequences")
     try:
-        pdb_chains = download_all_pdb_fasta(pdb_ids)
+        raw_pdb_fasta_dir = pdb_fasta_dir(output_dir, target_taxid, parent_taxid)
+        pdb_chains = download_all_pdb_fasta(pdb_ids, raw_pdb_fasta_dir)
+        save_pdb_chain_intermediates(pdb_chains, output_dir, target_taxid, parent_taxid)
     except Exception as exc:
-        log(f"  ✗ PDB FASTA 下载失败: {exc}", "ERROR")
+        log(f"  PDB FASTA download failed: {exc}", "ERROR")
         sys.exit(1)
 
     if not pdb_chains:
-        log("  ⚠ 未获取到 PDB chain 序列, 退出", "WARNING")
-        write_csv([], [], target_taxid, parent_taxid, threshold, output_dir, target_name)
-        sys.exit(0)
+        log("  No PDB chain sequences were parsed; exiting", "WARNING")
+        _write_empty_outputs_and_exit(
+            target_taxid,
+            parent_taxid,
+            threshold,
+            cluster_threshold,
+            output_dir,
+            target_name,
+            target_proteins,
+        )
 
     # 5. Sequence alignment
-    log("\n[Step 5/5] 序列比对")
+    log("\n[Step 5/6] Sequence alignment")
     aggregated, all_alignments = run_alignment(target_proteins, pdb_chains, threshold)
 
-    # 7. Write output
-    log("\n[输出] 写入 CSV 文件")
+    # Write standard output files
+    log("\n[Output] Write mapping and alignment CSV files")
     mapping_path, aln_path, log_path = write_csv(
         aggregated, all_alignments, target_taxid, parent_taxid, threshold, output_dir, target_name
     )
 
+    # 6. Cluster mapped UniProt sequences
+    log("\n[Step 6/6] Cluster mapped UniProt sequences with MMseqs2")
+    try:
+        cluster_path = run_mmseqs_clustering_report(
+            aggregated,
+            target_proteins,
+            target_taxid,
+            parent_taxid,
+            output_dir,
+            cluster_threshold,
+        )
+    except Exception as exc:
+        log(f"  MMseqs2 clustering failed: {exc}", "ERROR")
+        sys.exit(1)
+
+    with open(log_path, "a", encoding="utf-8") as handle:
+        handle.write(f"\nMMseqs2 Cluster Threshold: {cluster_threshold}\n")
+        handle.write(f"Cluster Mapping CSV: {cluster_path}\n")
+
     elapsed = time.time() - start_time
     log("=" * 60)
-    log(f"✓ 管道执行完成! 耗时 {elapsed:.1f}s")
-    log(f"  映射文件: {mapping_path}")
-    log(f"  比对详情: {aln_path}")
-    log(f"  运行日志: {log_path}")
-    log(f"  统计: {len(target_proteins)} 目标蛋白, {len(pdb_ids)} PDB, {len(aggregated)} 蛋白有匹配")
+    log(f"Pipeline completed in {elapsed:.1f}s")
+    log(f"  Mapping CSV: {mapping_path}")
+    log(f"  Alignment detail CSV: {aln_path}")
+    log(f"  Cluster mapping CSV: {cluster_path}")
+    log(f"  Run log: {log_path}")
+    log(f"  Summary: {len(target_proteins)} target proteins, {len(pdb_ids)} PDB entries, {len(aggregated)} proteins with matches")
     log("=" * 60)
 
 

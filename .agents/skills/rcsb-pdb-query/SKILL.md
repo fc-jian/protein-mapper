@@ -72,3 +72,15 @@ The complete description is preserved in CSV output for traceability.
 
 Use small FASTA fixtures to test parsing. For search changes, inspect the JSON
 query body and use a live smoke run only when network access is available.
+
+## Intermediate Output
+
+The pipeline saves PDB search and FASTA intermediates by default under
+`{output}/{target}_{parent}_intermediates/pdb/`:
+
+- `{target}_{parent}_pdb_ids.txt`
+- `{target}_{parent}_pdb_query.json`
+- `{target}_{parent}_pdb_chains.csv`
+- `fasta/{pdb_id}.fasta`
+
+Raw FASTA files should be written after successful downloads and before parsing.

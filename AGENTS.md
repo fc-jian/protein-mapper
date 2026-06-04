@@ -15,7 +15,9 @@ pipeline:
 3. Searches RCSB PDB for structures under the parent taxonomy lineage with the
    requested keyword text query.
 4. Downloads each matching PDB entry's FASTA records and parses chains.
-5. Aligns target proteins against PDB chains and writes CSV outputs.
+5. Saves intermediate FASTA/metadata files by default.
+6. Aligns target proteins against PDB chains and writes CSV outputs.
+7. Clusters mapped UniProt sequences with MMseqs2 and writes a cluster report.
 
 Primary tracked documentation lives in `README.md` and `README_CN.md`. The
 `docs/` directory is local-only and ignored by Git.
@@ -30,6 +32,8 @@ Reusable project knowledge is persisted under `.agents/skills/`:
   lineage filters, FASTA downloads, and chain parsing.
 - `.agents/skills/protein-sequence-alignment/SKILL.md`: pairwise alignment,
   identity calculation, k-mer pre-screening, filtering, and aggregation.
+- `.agents/skills/mmseqs-cluster-report/SKILL.md`: MMseqs2 clustering of mapped
+  UniProt sequences and cluster-level CSV reporting.
 
 When a task touches one of these areas, read the matching skill before editing.
 
@@ -37,6 +41,8 @@ When a task touches one of these areas, read the matching skill before editing.
 
 - Python 3.10+.
 - Runtime dependencies: `requests`, `biopython`, and `pandas`.
+- External runtime dependency: MMseqs2 (`mmseqs` on `PATH`) for clustering the
+  final mapped UniProt sequences.
 - Use `uv` for the local environment in `./.venv`.
 - There is no dependency manifest yet. If dependencies change, add or update a
   manifest and keep the README files in sync.
@@ -90,6 +96,8 @@ Main endpoints used by the pipeline:
   - `uniprot.py`: UniProt proteome download and JSON parsing.
   - `pdb_search.py`: RCSB search plus concurrent FASTA download/parsing.
   - `alignment.py`: sequence alignment and aggregation.
+  - `intermediate.py`: intermediate FASTA and metadata writers.
+  - `clustering.py`: MMseqs2 clustering and cluster-level report generation.
   - `output.py`: CSV and run-log writing.
 - Follow the existing style: type hints, `from __future__ import annotations`,
   module-level docstrings, and simple dictionaries for API records.
@@ -107,10 +115,14 @@ The pipeline writes three files per run:
 
 - `{target}_{parent}_mapping.csv`
 - `{target}_{parent}_all_alignments.csv`
+- `{target}_{parent}_cluster_mapping.csv`
 - `{target}_{parent}_log.txt`
 
-`results/` is generated output and ignored by Git. Do not force-add generated
-datasets unless the task specifically requires it.
+Intermediate FASTA and metadata files are saved by default under
+`{output}/{target}_{parent}_intermediates/`.
+
+`results/` and `*_intermediates/` are generated output and ignored by Git. Do
+not force-add generated datasets unless the task specifically requires it.
 `output.py` currently writes CSV files with `utf-8-sig`; preserve that unless
 there is a concrete compatibility reason to change it.
 

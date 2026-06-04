@@ -85,3 +85,9 @@ Prefer deterministic unit tests for:
 
 Avoid relying on live API calls for alignment tests; use small synthetic
 sequence fixtures.
+
+## Downstream Clustering
+
+After final mapping aggregation, mapped UniProt sequences are clustered with
+MMseqs2 at `config.MMSEQS_CLUSTER_THRESHOLD` (default `0.9`). Do not change the
+mapping row schema without updating cluster report generation as well.

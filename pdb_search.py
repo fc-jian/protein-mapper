@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from io import StringIO
 from typing import Any
@@ -10,6 +9,7 @@ from typing import Any
 from Bio import SeqIO
 
 import config
+from intermediate import save_raw_pdb_fasta
 from utils import http_get, http_post, log
 
 
@@ -31,7 +31,7 @@ def search_pdb_structures(
         List of PDB IDs (e.g. ['2I9L', '5EOR']).
     """
     keyword_str = " ".join(keywords)
-    log(f"搜索 RCSB PDB: parent_taxonomy={parent_taxid}, keywords={keyword_str}")
+    log(f"Searching RCSB PDB: parent_taxonomy={parent_taxid}, keywords={keyword_str}")
 
     # Build OR nodes: one for struct.title, one for polymer entity description
     keyword_nodes = []
@@ -86,13 +86,13 @@ def search_pdb_structures(
         batch_ids = [item["identifier"] for item in result_set]
         all_ids.extend(batch_ids)
 
-        log(f"  获取 {len(batch_ids)} 个 PDB (start={start}, total={total})")
+        log(f"  Retrieved {len(batch_ids)} PDB entries (start={start}, total={total})")
 
         start += len(batch_ids)
         if start >= total or len(batch_ids) == 0:
             break
 
-    log(f"✓ PDB 搜索完成: 共 {len(all_ids)} 个结构")
+    log(f"PDB search completed: {len(all_ids)} structures")
     return all_ids
 
 
@@ -110,12 +110,13 @@ def fetch_pdb_fasta(pdb_id: str) -> tuple[str, str | None]:
         resp = http_get(url, timeout=config.FASTA_TIMEOUT, max_retries=2)
         return pdb_id, resp.text
     except Exception as exc:
-        log(f"  PDB {pdb_id} FASTA 下载失败: {exc}", "WARNING")
+        log(f"  Failed to download FASTA for PDB {pdb_id}: {exc}", "WARNING")
         return pdb_id, None
 
 
 def download_all_pdb_fasta(
     pdb_ids: list[str],
+    fasta_output_dir: str | None = None,
 ) -> list[dict[str, Any]]:
     """Download and parse FASTA for multiple PDB entries concurrently.
 
@@ -126,10 +127,10 @@ def download_all_pdb_fasta(
         List of chain dicts with keys: pdb_id, chain_desc, sequence, length.
     """
     if not pdb_ids:
-        log("  没有 PDB ID 需要下载", "WARNING")
+        log("  No PDB IDs to download", "WARNING")
         return []
 
-    log(f"下载 {len(pdb_ids)} 个 PDB 的 FASTA 序列 (并发数={config.PDB_CONCURRENT_WORKERS})...")
+    log(f"Downloading FASTA sequences for {len(pdb_ids)} PDB entries (workers={config.PDB_CONCURRENT_WORKERS})...")
 
     all_chains: list[dict[str, Any]] = []
     success = 0
@@ -146,10 +147,11 @@ def download_all_pdb_fasta(
                 failed += 1
                 continue
             success += 1
+            save_raw_pdb_fasta(fasta_output_dir, pdb_id, fasta_text)
             chains = _parse_pdb_fasta(pdb_id, fasta_text)
             all_chains.extend(chains)
 
-    log(f"✓ PDB FASTA 下载完成: 成功 {success}, 失败 {failed}, 共 {len(all_chains)} 条 chain")
+    log(f"PDB FASTA download completed: {success} succeeded, {failed} failed, {len(all_chains)} chains parsed")
     return all_chains
 
 
@@ -178,6 +180,6 @@ def _parse_pdb_fasta(pdb_id: str, fasta_text: str) -> list[dict[str, Any]]:
                     "length": len(seq),
                 })
     except Exception as exc:
-        log(f"  解析 PDB {pdb_id} FASTA 失败: {exc}", "WARNING")
+        log(f"  Failed to parse FASTA for PDB {pdb_id}: {exc}", "WARNING")
 
     return chains

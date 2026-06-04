@@ -75,3 +75,13 @@ Avoid parsing FASTA headers for these fields when JSON is available.
 For parser changes, add fixture-level tests around `_parse_uniprot_results`.
 For client changes, validate pagination with a mocked `Link` header before using
 live API smoke runs.
+
+## Intermediate Output
+
+The pipeline saves normalized UniProt records by default under
+`{output}/{target}_{parent}_intermediates/uniprot/`:
+
+- `{target}_uniprot.fasta`
+- `{target}_uniprot_proteins.csv`
+
+Keep these files synchronized with the normalized record schema.

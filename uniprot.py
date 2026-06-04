@@ -1,8 +1,6 @@
 """UniProt REST API client for fetching proteome sequences."""
 
 from __future__ import annotations
-
-import re
 from typing import Any
 
 import config
@@ -32,20 +30,20 @@ def fetch_uniprot_proteins(taxid: int) -> list[dict[str, Any]]:
         f"&size={config.UNIPROT_PAGE_SIZE}"
     )
 
-    log(f"下载 UniProt 蛋白质组: taxonomy_id={taxid}")
+    log(f"Downloading UniProt proteome: taxonomy_id={taxid}")
     all_results: list[dict[str, Any]] = []
     url: str | None = base_url
     page = 0
 
     while url:
         page += 1
-        log(f"  获取第 {page} 页...")
+        log(f"  Fetching page {page}...")
         resp = http_get(url)
         data = resp.json()
 
         results = data.get("results", [])
         all_results.extend(results)
-        log(f"    本页 {len(results)} 条, 累计 {len(all_results)} 条")
+        log(f"    Page records: {len(results)}, total records: {len(all_results)}")
 
         # Parse Link header for next page
         url = None
@@ -57,7 +55,7 @@ def fetch_uniprot_proteins(taxid: int) -> list[dict[str, Any]]:
                     break
 
     proteins = _parse_uniprot_results(all_results)
-    log(f"✓ UniProt 下载完成: 共 {len(proteins)} 个蛋白质")
+    log(f"UniProt download completed: {len(proteins)} proteins")
     return proteins
 
 
@@ -98,7 +96,7 @@ def _parse_uniprot_results(results: list[dict[str, Any]]) -> list[dict[str, Any]
                 "taxon_id": organism_info.get("taxonId", 0),
             })
         except Exception as exc:
-            log(f"    解析条目失败: {exc}", "WARNING")
+            log(f"    Failed to parse UniProt entry: {exc}", "WARNING")
             continue
 
     return proteins

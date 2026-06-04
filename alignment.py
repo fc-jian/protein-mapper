@@ -94,12 +94,12 @@ def run_alignment(
     n_chains = len(pdb_chains)
     total_alignments = n_proteins * n_chains
 
-    log(f"开始序列比对: {n_proteins} 目标蛋白 × {n_chains} PDB chains = {total_alignments} 次比对")
-    log(f"  Identity 阈值: {threshold}%")
+    log(f"Starting sequence alignment: {n_proteins} target proteins x {n_chains} PDB chains = {total_alignments} comparisons")
+    log(f"  Identity threshold: {threshold}%")
 
     use_kmer = total_alignments > config.KMER_PRE_FILTER_TRIGGER
     if use_kmer:
-        log(f"  启用 k-mer (k={config.KMER_SIZE}) 预筛, Jaccard ≥ {config.KMER_JACCARD_THRESHOLD}")
+        log(f"  Using k-mer pre-screening (k={config.KMER_SIZE}), Jaccard >= {config.KMER_JACCARD_THRESHOLD}")
 
     all_alignments: list[dict[str, Any]] = []
     matched_count = 0
@@ -110,7 +110,7 @@ def run_alignment(
         seq1 = protein["sequence"]
         len1 = protein["length"]
         if i % 50 == 0 and i > 0:
-            log(f"  比对进度: {i}/{n_proteins} 蛋白, 已匹配 {matched_count}")
+            log(f"  Alignment progress: {i}/{n_proteins} proteins, {matched_count} matches")
 
         for chain in pdb_chains:
             seq2 = chain["sequence"]
@@ -149,11 +149,11 @@ def run_alignment(
                 all_alignments.append(alignment_record)
                 matched_count += 1
 
-    log(f"  比对统计: 长度过滤 {skipped_length}, k-mer 过滤 {skipped_kmer}, 匹配 {matched_count}")
+    log(f"  Alignment stats: length-filtered {skipped_length}, k-mer-filtered {skipped_kmer}, matches {matched_count}")
 
     # Aggregate by target protein: best chain per PDB
     aggregated = _aggregate_results(all_alignments, target_proteins)
-    log(f"✓ 比对完成: {len(aggregated)} 个目标蛋白有 PDB 匹配 (总计 {len(all_alignments)} 条比对记录)")
+    log(f"Alignment completed: {len(aggregated)} target proteins have PDB matches ({len(all_alignments)} alignment records)")
     return aggregated, all_alignments
 
 

@@ -2,13 +2,37 @@
 
 from __future__ import annotations
 
-import csv
 import os
 from typing import Any
 
 import pandas as pd
 
 from utils import log
+
+
+MAPPING_COLUMNS = [
+    "target_taxonomy_id",
+    "parent_taxonomy_id",
+    "target_protein_uniprot_id",
+    "target_protein_name",
+    "target_protein_length",
+    "target_organism",
+    "support_pdb_id",
+    "support_pdb_chain_description",
+    "identity_pct",
+    "alignment_score",
+]
+
+ALIGNMENT_COLUMNS = [
+    "target_accession",
+    "target_protein_name",
+    "target_length",
+    "pdb_id",
+    "chain_desc",
+    "pdb_length",
+    "identity_pct",
+    "alignment_score",
+]
 
 
 def write_csv(
@@ -49,47 +73,21 @@ def write_csv(
     for row in aggregated:
         row["parent_taxonomy_id"] = parent_taxid
 
-    # --- Mapping CSV ---
-    mapping_cols = [
-        "target_taxonomy_id",
-        "parent_taxonomy_id",
-        "target_protein_uniprot_id",
-        "target_protein_name",
-        "target_protein_length",
-        "target_organism",
-        "support_pdb_id",
-        "support_pdb_chain_description",
-        "identity_pct",
-        "alignment_score",
-    ]
-
     if aggregated:
-        df_map = pd.DataFrame(aggregated)[mapping_cols]
+        df_map = pd.DataFrame(aggregated)[MAPPING_COLUMNS]
     else:
-        df_map = pd.DataFrame(columns=mapping_cols)
+        df_map = pd.DataFrame(columns=MAPPING_COLUMNS)
 
     df_map.to_csv(mapping_path, index=False, encoding="utf-8-sig")
-    log(f"输出映射文件: {mapping_path} ({len(df_map)} 行)")
-
-    # --- All Alignments CSV ---
-    aln_cols = [
-        "target_accession",
-        "target_protein_name",
-        "target_length",
-        "pdb_id",
-        "chain_desc",
-        "pdb_length",
-        "identity_pct",
-        "alignment_score",
-    ]
+    log(f"Wrote mapping CSV: {mapping_path} ({len(df_map)} rows)")
 
     if all_alignments:
-        df_aln = pd.DataFrame(all_alignments)[aln_cols]
+        df_aln = pd.DataFrame(all_alignments)[ALIGNMENT_COLUMNS]
     else:
-        df_aln = pd.DataFrame(columns=aln_cols)
+        df_aln = pd.DataFrame(columns=ALIGNMENT_COLUMNS)
 
     df_aln.to_csv(alignments_path, index=False, encoding="utf-8-sig")
-    log(f"输出比对详情: {alignments_path} ({len(df_aln)} 行)")
+    log(f"Wrote alignment detail CSV: {alignments_path} ({len(df_aln)} rows)")
 
     # --- Log file ---
     with open(log_path, "w", encoding="utf-8") as f:
@@ -111,6 +109,6 @@ def write_csv(
                     f"{row['identity_pct']:.1f}% — {row['support_pdb_id']}\n"
                 )
 
-    log(f"输出日志文件: {log_path}")
+    log(f"Wrote run log: {log_path}")
 
     return mapping_path, alignments_path, log_path

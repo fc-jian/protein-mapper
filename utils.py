@@ -29,7 +29,7 @@ def probe_endpoints() -> None:
         if _probe_cache.get(name):
             continue
 
-        log(f"探测端点连通性 [{name}]: {url[:70]}...")
+        log(f"Probing endpoint [{name}]: {url[:70]}...")
         if name == "rcsb_search":
             _probe_one_post(
                 url,
@@ -51,10 +51,10 @@ def probe_endpoints() -> None:
             _probe_one_get(url)
 
         _probe_cache[name] = True
-        log(f"  端点 [{name}]: 可用")
+        log(f"  Endpoint [{name}]: available")
 
-    status = ", ".join(f"{name}=可用" for name in _probe_cache)
-    log(f"端点探测完成: {status}")
+    status = ", ".join(f"{name}=available" for name in _probe_cache)
+    log(f"Endpoint probing completed: {status}")
 
 
 def _probe_one_get(url: str) -> None:
@@ -63,8 +63,8 @@ def _probe_one_get(url: str) -> None:
         resp = requests.get(url, timeout=config.PROBE_TIMEOUT)
         resp.raise_for_status()
     except requests.RequestException as exc:
-        log(f"  端点不可用: {url}", "ERROR")
-        raise RuntimeError(f"无法连接 {url}") from exc
+        log(f"  Endpoint unavailable: {url}", "ERROR")
+        raise RuntimeError(f"Could not connect to {url}") from exc
 
 
 def _probe_one_post(url: str, json_data: dict[str, Any]) -> None:
@@ -73,8 +73,8 @@ def _probe_one_post(url: str, json_data: dict[str, Any]) -> None:
         resp = requests.post(url, json=json_data, timeout=config.PROBE_TIMEOUT)
         resp.raise_for_status()
     except requests.RequestException as exc:
-        log(f"  端点不可用: {url}", "ERROR")
-        raise RuntimeError(f"无法连接 {url}") from exc
+        log(f"  Endpoint unavailable: {url}", "ERROR")
+        raise RuntimeError(f"Could not connect to {url}") from exc
 
 
 # ── logging ─────────────────────────────────────────────────────────────────
@@ -113,9 +113,9 @@ def _try_request(
             if attempt < max_retries:
                 wait = config.RETRY_BACKOFF_BASE ** (attempt + 1)
                 log(
-                    f"{method} {url[:80]}... 失败 "
-                    f"(尝试 {attempt + 1}/{max_retries}): {exc!r:.100}。"
-                    f"{wait:.0f}s 后重试...",
+                    f"{method} {url[:80]}... failed "
+                    f"(attempt {attempt + 1}/{max_retries}): {exc!r:.100}. "
+                    f"Retrying in {wait:.0f}s...",
                     "WARNING",
                 )
                 time.sleep(wait)
